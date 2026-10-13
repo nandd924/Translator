@@ -1,0 +1,22 @@
+export default function DataPolicyPage() {
+  return (
+    <section className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="space-y-6">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-saffron">Data policy</p>
+        <h1 className="text-4xl font-black tracking-tight text-navy">Dictionary and contribution data policy</h1>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+          <h2 className="text-2xl font-bold text-navy">Source of truth</h2>
+          <p className="mt-3 text-slate-700">The project uses a local JSONL adapter by default. Approved public entries must be reviewed before publication. Raw OCR candidates and unapproved entries remain separate from public entries.</p>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+          <h2 className="text-2xl font-bold text-navy">Review and publishing</h2>
+          <p className="mt-3 text-slate-700">Submissions remain private and unverified until reviewed by an authorized reviewer. Rejected or pending entries are never displayed as public dictionary results.</p>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-soft">
+          <h2 className="text-2xl font-bold text-navy">Use of contributed content</h2>
+          <p className="mt-3 text-slate-700">Contributed content may be used to improve the searchable dictionary, add examples, and support language-learning features after review. Public usage rights depend on the permission status and source provenance of each entry.</p>
+        </div>
+      </div>
+    </section>
+  );
+}

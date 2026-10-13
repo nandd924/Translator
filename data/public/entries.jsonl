@@ -1,0 +1,35 @@
+import fs from 'fs/promises';
+import path from 'path';
+import { ContributionInput } from './validation';
+
+const rateLimitMap = new Map<string, number[]>();
+
+export async function appendContribution(payload: ContributionInput) {
+  const filePath = path.join(process.cwd(), 'data', 'private', 'contributions.jsonl');
+  const record = {
+    id: `contrib-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    createdAt: new Date().toISOString(),
+    status: 'pending',
+    ...payload,
+  };
+
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.appendFile(filePath, `${JSON.stringify(record)}\n`, 'utf8');
+
+  return record;
+}
+
+export function rateLimitRequest(ip: string, maxRequests = 5, intervalMs = 60_000) {
+  const now = Date.now();
+  const history = rateLimitMap.get(ip) ?? [];
+  const valid = history.filter((timestamp) => now - timestamp < intervalMs);
+
+  if (valid.length >= maxRequests) {
+    rateLimitMap.set(ip, valid);
+    return false;
+  }
+
+  valid.push(now);
+  rateLimitMap.set(ip, valid);
+  return true;
+}
