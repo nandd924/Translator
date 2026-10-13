@@ -1,40 +1,30 @@
 # HO–HINDI TRANSLATOR
 
-This project is a functional starter for a Ho–Hindi language portal and dictionary lookup interface. It includes a local public dataset adapter, dictionary API endpoints, a contribution review queue, and a polished responsive UI. The data in the default fixture is intentionally labeled as synthetic test data and should not be presented as a verified dictionary.
+A dictionary-first Ho–Hindi project focused on public lookups, community contributions, and reviewable data.
 
-## Local setup
+## Supabase setup
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the app:
-   ```bash
-   npm run dev
-   ```
-3. Open http://localhost:3000
+1. Copy `.env.example` to `.env.local`.
+2. Add your project values:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+3. Run the SQL migration in `supabase/migrations/001_dictionary_schema.sql`.
+4. Keep private submissions in the pending-review table, and public reads limited to approved entries.
+
+## Local JSONL fallback
+
+If Supabase is not configured, the app reads from `data/public/entries.jsonl` and stores pending contributions in `data/private/contributions.jsonl`.
 
 ## Scripts
 
-- `npm run dev` — run local development server
-- `npm run build` — production build
-- `npm run start` — run built app
-- `npm run lint` — lint project
-- `npm run typecheck` — TypeScript check
-- `npm run test` — run Vitest suite
+- `npm install`
+- `npm run dev`
+- `npm run typecheck`
+- `npm run test`
+- `npm run build`
 
-## Dataset and source of truth
+## Notes
 
-- Public approved entries live in `data/public/entries.jsonl`.
-- Pending contributions live in `data/private/contributions.jsonl`.
-- The app by default uses the local JSONL adapter when no Supabase configuration is present.
-- Supabase can be added later with a documented migration and RLS policy.
-
-## Current state
-
-This project is functional as a dictionary lookup prototype and website shell, but it still requires a permission-cleared, reviewed Ho–Hindi dataset before it can claim real dictionary coverage.
-
-## Deployment
-
-- Vercel is a suitable deployment target.
-- Add environment variables in `.env.local` or your hosting dashboard before production deployment.
+- This project intentionally avoids claiming sentence translation until a verified model or engine is implemented.
+- Public entries remain empty or synthetic until a reviewed, permission-cleared dataset is supplied.

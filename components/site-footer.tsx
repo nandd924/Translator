@@ -1,34 +1,30 @@
 import Link from 'next/link';
 
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/translate', label: 'Translate' },
-  { href: '/dictionary', label: 'Dictionary' },
-  { href: '/about', label: 'About' },
-  { href: '/contribute', label: 'Contribute' },
-  { href: '/status', label: 'Status' },
-];
-
-export function SiteHeader() {
+export function SiteFooter() {
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-ivory/85 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy text-lg font-black text-white shadow-soft">H</div>
-          <div>
-            <div className="text-base font-black uppercase tracking-[0.12em] text-navy">Ho–Hindi</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500">Translator</div>
-          </div>
-        </Link>
-
-        <nav aria-label="Main navigation" className="hidden items-center gap-6 md:flex">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm font-medium text-slate-700 transition hover:text-saffron">
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+    <footer className="border-t border-slate-200 bg-white">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-3 lg:px-8">
+        <div>
+          <h2 className="text-lg font-black uppercase tracking-[0.12em] text-navy">Ho–Hindi Translator</h2>
+          <p className="mt-3 text-sm text-slate-600">A dictionary-first language project focused on reviewable, transparent Ho–Hindi data.</p>
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-saffron">Explore</h3>
+          <ul className="mt-3 space-y-2 text-sm text-slate-700">
+            <li><Link href="/translate">Translator</Link></li>
+            <li><Link href="/dictionary">Dictionary</Link></li>
+            <li><Link href="/status">Project status</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-saffron">Policies</h3>
+          <ul className="mt-3 space-y-2 text-sm text-slate-700">
+            <li><Link href="/privacy">Privacy</Link></li>
+            <li><Link href="/data-policy">Data policy</Link></li>
+            <li><Link href="/contribute">Contribute</Link></li>
+          </ul>
+        </div>
       </div>
-    </header>
+    </footer>
   );
 }
